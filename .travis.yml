@@ -14,7 +14,8 @@ script:
   - sudo apt-get install build-essential
   - git clone https://github.com/operator-framework/operator-sdk.git
   - cd ./operator-sdk/
-  - git checkout -t origin/release-4.4
+  #- git checkout -t origin/release-4.4
+  - git checkout tags/v0.9.0
   - make install
   - echo $GOPATH
   - ls /home/travis/gopath/bin
