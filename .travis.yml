@@ -21,3 +21,4 @@ script:
   - make install
   - echo $GOPATH
   # - /root/go-workspace/bin/operator-sdk --help
+  - ls /home/travis/gopath
