@@ -11,12 +11,13 @@ arch:
   - ppc64le
 
 script:
+  - VERSION=v0.12.0
   - sudo apt-get install build-essential
   - git clone https://github.com/operator-framework/operator-sdk.git
   - cd ./operator-sdk/
-  - git checkout tags/v0.9.0
+  - git checkout tags/$VERSION
   - make install
   - echo $GOPATH
-  - mkdir ./v0.9.0
-  - cp -rp /home/travis/gopath/bin/operator-sdk ./v0.9.0
-  - ./v0.9.0/operator-sdk --help
+  - mkdir ./v$VERSION
+  - cp -rp /home/travis/gopath/bin/operator-sdk ./$VERSION
+  - ./$VERSION/operator-sdk --help
