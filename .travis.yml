@@ -13,5 +13,5 @@ script:
   - git clone https://github.com/operator-framework/operator-sdk.git
   - cd ./operator-sdk/
   - git checkout -t origin/release-4.4
-  - make release
+  - make install
   - /root/go-workspace/bin/operator-sdk --help
