@@ -18,4 +18,4 @@ script:
   - make install
   - echo $GOPATH
   - ls /home/travis/gopath/bin
-  - /home/travis/gopath/binoperator-sdk --help
+  - /home/travis/gopath/bin/operator-sdk --help
