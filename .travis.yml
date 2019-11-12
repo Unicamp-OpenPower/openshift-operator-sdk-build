@@ -11,7 +11,7 @@ arch:
   - ppc64le
 
 script:
-  - sudo apt-get update; apt-get upgrade -y
+  #- sudo apt-get update; apt-get upgrade -y
   - sudo apt-get install build-essential
   #- git clone https://github.com/rpsene/goconfig.git
   #- source ./goconfig/go.sh install
@@ -19,4 +19,5 @@ script:
   - cd ./operator-sdk/
   - git checkout -t origin/release-4.4
   - make install
-  - /root/go-workspace/bin/operator-sdk --help
+  - echo $GOPATH
+  # - /root/go-workspace/bin/operator-sdk --help
