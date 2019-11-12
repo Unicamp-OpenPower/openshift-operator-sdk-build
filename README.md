@@ -1,0 +1,1 @@
+# openshift-operator-sdk-build
