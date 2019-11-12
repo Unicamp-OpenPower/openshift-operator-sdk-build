@@ -14,3 +14,4 @@ script:
   - cd ./operator-sdk/
   - git checkout -t origin/release-4.4
   - make release
+  - /root/go-workspace/bin/operator-sdk --help
