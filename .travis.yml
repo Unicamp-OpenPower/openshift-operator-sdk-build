@@ -18,6 +18,18 @@ script:
   - git checkout tags/$VERSION
   - make install
   - echo $GOPATH
-  - mkdir ./$VERSION
-  - cp -rp /home/travis/gopath/bin/operator-sdk ./$VERSION
-  - ./$VERSION/operator-sdk --help
+  - mkdir $TRAVIS_BUILD_DIR/output
+  - cp -rp $GOPATH/bin/operator-sdk $TRAVIS_BUILD_DIR/output/operator-sdk-$VERSION
+  - $TRAVIS_BUILD_DIR/output/operator-sdk-$VERSION --help
+
+deploy:
+  provider: script  
+  script: sudo apt-get install -y lftp; bash ftp_upload.sh
+  skip_cleanup: true
+
+notifications:
+  slack:
+    rooms:
+      - secure: "kuirxWlEz0v+MJQmxDTzmo/CUD5XItoerOc7LF3rxtyfLsV8YHPeXyUqXj33EvA3trobnXr7Zg3hh175YrtulO7lpjDHNntr8ZdI1chFS1D+cLzvl00HUFkT1I7Z73AqM+L73XYKCChCm+vkzGVxTyWToONCI7KrQTrnm7X52HBCV0oCmnGUg87XD3fiwH1/WXwQ7dvY3J+zZqqvjuuMqV2KQs96FG4G8U5MvQdDe+ZLDV3xRM0SX9ITjumoWt58Lk6i1A2/HFf/OZ79Ze81odoP/0GnhLfT03k6YzwJTq5H5nyFJev+N9KqQ/uaSKNRVZ31RJxOzTQIHbM19pANuJirdY/72PCET7JuvpFpkeWAjkXMj8nGaalEzN9+kMJWsndtLXdHf84CkoXFLNfsbUd9ydPhWAEqSJ1O7qsHdHFrxvaASWlSifxdaCBTS6NmUyS2QdiYY/JPBxhkA27ycQSfGvF+OhdX2H8SWmLib2Lc6/9Ihc6p9KzmSO+patCfUTBV3z2TIy3/rDF9AEvlcNmcWBNlao43P03Uv80DLNgiBEcHhUyIm6ETbd4blaGhpg49qxrtPkPW6gDPnYBlLXdXBdsJHrveZfR59NT6OCIJj+9OMFBeQnuBL35YSII3Cy47TUzJp8USp8bcTkTyFX9U3ac3NPv3wErQ10Pn/XQ="
+    on_success: change
+    on_failure: always
